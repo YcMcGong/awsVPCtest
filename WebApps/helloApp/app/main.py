@@ -9,7 +9,12 @@ RE_ENDPOINT = 'http://0.0.0.0:4000'
 
 app = Flask(__name__)
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route("/")
+def hello():
+    return "Hello World from Flask in a uWSGI Nginx Docker container with \
+     Python 3.6 (default)"
+
+@app.route('/test', methods = ['GET', 'POST'])
 def test():
     if request.method == 'GET':
         
@@ -29,4 +34,4 @@ def test():
             return '', 404
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 5000)
+    app.run(host = '0.0.0.0', port = 80)
